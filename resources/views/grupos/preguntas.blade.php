@@ -1,5 +1,9 @@
 @extends('layouts.web')
 
+@section('titulo')
+Preguntas de: {{ $grupo->nombre }}
+@endsection
+
 @section('content')
     @foreach($preguntas as $pregunta)
         <ul class="list-group">

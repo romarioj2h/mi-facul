@@ -45,3 +45,10 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/admin', 'HomeController@index')->name('home');
+
+Route::prefix('/admin')->group(function() {
+    Route::get('/grupos', [
+        'as' => 'admin.grupos.index',
+        'uses' => 'Admin\GruposController@index'
+    ]);
+});

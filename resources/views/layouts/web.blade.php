@@ -19,14 +19,15 @@
         <br>
         <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('web.index') }}">Página inicial</a>
+                <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.index') active @endif" href="{{ route('web.index') }}">Página inicial</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('web.contacto') }}">Contacto</a>
+                <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.contacto') active @endif" href="{{ route('web.contacto') }}">Contacto</a>
             </li>
         </ul>
         <hr>
         <div class="jumbotron">
+            <h1>@yield('titulo')</h1>
             <h4 id="resultado" class="text-center text-success"></h4>
         </div>
         @yield('content')

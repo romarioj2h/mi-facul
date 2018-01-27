@@ -1,5 +1,9 @@
 @extends('layouts.web')
 
+@section('titulo')
+    Listas de preguntas
+@endsection
+
 @section('content')
     <div class="list-group">
         @foreach($grupos as $grupo)

@@ -18,7 +18,8 @@ class GruposController extends Controller
     {
         $grupo = Grupos::find($id);
         return view('grupos.preguntas', [
-            'preguntas' => $grupo->preguntas()->get()
+            'preguntas' => $grupo->preguntas()->get(),
+            'grupo' => $grupo
         ]);
     }
 }
