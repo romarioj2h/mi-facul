@@ -47,8 +47,48 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/admin', 'HomeController@index')->name('home');
 
 Route::prefix('/admin')->group(function() {
-    Route::get('/grupos', [
-        'as' => 'admin.grupos.index',
-        'uses' => 'Admin\GruposController@index'
-    ]);
+    Route::prefix('/grupos')->group(function () {
+        Route::get('/', [
+            'as' => 'admin.grupos.index',
+            'uses' => 'Admin\GruposController@index'
+        ]);
+        Route::get('/editar/{id}', [
+            'as' => 'admin.grupos.editar',
+            'uses' => 'Admin\GruposController@editar'
+        ]);
+        Route::get('/agregar', [
+            'as' => 'admin.grupos.agregar',
+            'uses' => 'Admin\GruposController@agregar'
+        ]);
+        Route::patch('/modificar', [
+            'as' => 'admin.grupos.modificar',
+            'uses' => 'Admin\GruposController@guardar'
+        ]);
+        Route::post('/guardar', [
+            'as' => 'admin.grupos.guardar',
+            'uses' => 'Admin\GruposController@guardar'
+        ]);
+        Route::prefix('/{gruposId}/preguntas')->group(function () {
+            Route::get('/', [
+                'as' => 'admin.grupos.preguntas.index',
+                'uses' => 'Admin\PreguntasController@index'
+            ]);
+            Route::get('/editar/{id}', [
+                'as' => 'admin.grupos.preguntas.editar',
+                'uses' => 'Admin\PreguntasController@editar'
+            ]);
+            Route::get('/agregar', [
+                'as' => 'admin.grupos.preguntas.agregar',
+                'uses' => 'Admin\PreguntasController@agregar'
+            ]);
+            Route::patch('/modificar', [
+                'as' => 'admin.grupos.preguntas.modificar',
+                'uses' => 'Admin\PreguntasController@guardar'
+            ]);
+            Route::post('/guardar', [
+                'as' => 'admin.grupos.preguntas.guardar',
+                'uses' => 'Admin\PreguntasController@guardar'
+            ]);
+        });
+    });
 });

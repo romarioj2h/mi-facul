@@ -5,24 +5,23 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 @include('partials.alerta')
-                <h1>Grupos
-                    <a href="{{ route('admin.grupos.agregar') }}" class="btn btn-primary pull-right">Agregar</a>
+                <h1>Preguntas
+                    <a href="{{ route('admin.grupos.preguntas.agregar', ['gruposId' => $grupo->id]) }}" class="btn btn-primary pull-right">Agregar</a>
                 </h1>
                 <table class="table table-striped">
                     <thead>
                     <th>ID</th>
-                    <th>Nombre</th>
+                    <th>Pregunta</th>
                     <th>Opciones</th>
                     </thead>
                     <tbody>
-                    @foreach($grupos as $grupo)
+                    @foreach($preguntas as $pregunta)
                         <tr>
-                            <td>{{ $grupo->id }}</td>
-                            <td>{{ $grupo->nombre }}</td>
+                            <td>{{ $pregunta->id }}</td>
+                            <td>{{ $pregunta->pregunta }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Acciones">
-                                    <a href="{{ route('admin.grupos.editar', ['id' => $grupo->id]) }}" type="button" class="btn btn-default">Editar</a>
-                                    <a href="{{ route('admin.grupos.preguntas.index', ['gruposId' => $grupo->id]) }}" type="button" class="btn btn-default">Preguntas</a>
+                                    <a href="{{ route('admin.grupos.preguntas.editar', ['id' => $pregunta->id, 'gruposId' => $grupo->id]) }}" type="button" class="btn btn-default">Editar</a>
                                 </div>
                             </td>
                         </tr>
@@ -30,7 +29,7 @@
                     </tbody>
                 </table>
                 <div class="text-center">
-                    {{ $grupos->links() }}
+                    {{ $preguntas->links() }}
                 </div>
             </div>
         </div>

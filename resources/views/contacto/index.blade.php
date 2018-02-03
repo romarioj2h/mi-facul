@@ -5,5 +5,6 @@
 @endsection
 
 @section('content')
-    romarioj2h@gmail.com
+    <p>Contactese para anunciar en nuestro sitio</p>
+    <p><a href="mailto:romarioj2h@gmail.com">romarioj2h@gmail.com</a></p>
 @endsection
