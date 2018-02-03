@@ -56,6 +56,10 @@ Route::prefix('/admin')->group(function() {
             'as' => 'admin.grupos.editar',
             'uses' => 'Admin\GruposController@editar'
         ]);
+        Route::get('/borrar/{id}', [
+            'as' => 'admin.grupos.borrar',
+            'uses' => 'Admin\GruposController@borrar'
+        ]);
         Route::get('/agregar', [
             'as' => 'admin.grupos.agregar',
             'uses' => 'Admin\GruposController@agregar'

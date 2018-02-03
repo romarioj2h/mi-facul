@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Grupos;
+use App\Preguntas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -61,5 +62,12 @@ class GruposController extends Controller
             $reglas['id'] = 'required|integer';
         }
         return $reglas;
+    }
+
+    public function borrar($id)
+    {
+        Preguntas::where('gruposId', $id)->delete();
+        Grupos::findOrFail($id)->delete();
+        return redirect()->route('admin.grupos.index');
     }
 }

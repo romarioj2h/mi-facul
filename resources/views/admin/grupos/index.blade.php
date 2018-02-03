@@ -24,6 +24,8 @@
                                     <a href="{{ route('admin.grupos.editar', ['id' => $grupo->id]) }}" type="button" class="btn btn-default">Editar</a>
                                     <a href="{{ route('admin.grupos.preguntas.index', ['gruposId' => $grupo->id]) }}" type="button" class="btn btn-default">Preguntas</a>
                                 </div>
+                                -----
+                                <a href="{{ route('admin.grupos.borrar', ['id' => $grupo->id]) }}" type="button" class="btn btn-danger">Borrar</a>
                             </td>
                         </tr>
                     @endforeach
