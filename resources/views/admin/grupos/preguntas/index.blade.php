@@ -23,6 +23,8 @@
                                 <div class="btn-group" role="group" aria-label="Acciones">
                                     <a href="{{ route('admin.grupos.preguntas.editar', ['id' => $pregunta->id, 'gruposId' => $grupo->id]) }}" type="button" class="btn btn-default">Editar</a>
                                 </div>
+                                -----
+                                <a href="{{ route('admin.grupos.preguntas.borrar', ['gruposId' => $grupo->id, 'id' => $pregunta->id]) }}" type="button" class="btn btn-danger">Borrar</a>
                             </td>
                         </tr>
                     @endforeach

@@ -71,4 +71,10 @@ class PreguntasController extends Controller
             'pregunta' => Preguntas::findOrFail($id)
         ]);
     }
+
+    public function borrar($gruposId, $id)
+    {
+        Preguntas::findOrFail($id)->delete();
+        return redirect()->route('admin.grupos.preguntas.index', ['gruposId' => $gruposId]);
+    }
 }
