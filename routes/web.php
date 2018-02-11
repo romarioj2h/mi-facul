@@ -20,6 +20,10 @@ Route::get('/', [
 
 Route::view('/contacto', 'contacto.index')->name('web.contacto');
 
+Route::post('/contacto/guardar', [
+    'as' => 'web.contacto.guardar',
+    'uses' => 'ContactosController@guardar'
+]);
 Route::get('/grupos/preguntas/{id}', [
     'as' => 'grupos.obtenerPreguntas',
     'uses' => 'GruposController@obtenerPreguntas'
