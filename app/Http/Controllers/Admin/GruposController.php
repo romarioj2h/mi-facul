@@ -41,6 +41,7 @@ class GruposController extends Controller
 
             $grupo->nombre = $request->input('nombre');
             $grupo->descripcion = $request->input('descripcion');
+            $grupo->idioma = $request->input('idioma');
             $grupo->save();
             $request->session()->flash('mensage', [
                 'tipo' => 'success',
