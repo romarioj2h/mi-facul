@@ -51,6 +51,17 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/admin', 'HomeController@index')->name('home');
 
 Route::prefix('/admin')->group(function() {
+    Route::prefix('/contactos')->group(function () {
+        Route::get('/', [
+            'as' => 'admin.contactos.index',
+            'uses' => 'Admin\ContactosController@index'
+        ]);
+        Route::post('/modificarEstado/{id}', [
+            'as' => 'admin.contactos.modificarEstado',
+            'uses' => 'Admin\ContactosController@modificarEstado'
+        ]);
+    });
+
     Route::prefix('/grupos')->group(function () {
         Route::get('/', [
             'as' => 'admin.grupos.index',

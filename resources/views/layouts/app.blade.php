@@ -12,6 +12,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -39,8 +45,11 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grupos <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ route('admin.grupos.index') }}">Lista</a></li>
+                                <li><a href="{{ route('admin.grupos.index') }}">Listado</a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.contactos.index') }}">Contactos</a>
                         </li>
                     </ul>
 
