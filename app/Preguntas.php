@@ -15,7 +15,7 @@ class Preguntas extends Model
 
     public function grupos()
     {
-        return $this->belongsTo('App\Grupos', 'grupossId');
+        return $this->belongsTo('App\Grupos', 'gruposId');
     }
 
     public function respuestas()
