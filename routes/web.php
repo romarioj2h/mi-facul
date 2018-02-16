@@ -145,7 +145,11 @@ Route::middleware('auth')->prefix('/admin')->group(function() {
 
 Route::prefix('/servicios')->group(function() {
     Route::get('/', [
-        'as' => 'web.servicios',
+        'as' => 'web.servicios.obtenerGrupos',
         'uses' => 'ServiciosController@obtenerGrupos'
+    ]);
+    Route::get('/{id}', [
+        'as' => 'web.servicios.obtenerServicios',
+        'uses' => 'ServiciosController@obtenerServicios'
     ]);
 });
