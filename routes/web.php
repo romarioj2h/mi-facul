@@ -142,3 +142,10 @@ Route::middleware('auth')->prefix('/admin')->group(function() {
         });
     });
 });
+
+Route::prefix('/servicios')->group(function() {
+    Route::get('/', [
+        'as' => 'web.servicios',
+        'uses' => 'ServiciosController@obtenerGrupos'
+    ]);
+});
