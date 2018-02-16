@@ -50,7 +50,34 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('/admin')->group(function() {
+Route::middleware('auth')->prefix('/admin')->group(function() {
+    Route::prefix('/servicios')->group(function() {
+        Route::get('/', [
+            'as' => 'admin.servicios.index',
+            'uses' => 'Admin\ServiciosController@index'
+        ]);
+        Route::get('/agregar', [
+            'as' => 'admin.servicios.agregar',
+            'uses' => 'Admin\ServiciosController@agregar'
+        ]);
+        Route::get('/editar/{id}', [
+            'as' => 'admin.servicios.editar',
+            'uses' => 'Admin\ServiciosController@editar'
+        ]);
+        Route::get('/borrar/{id}', [
+            'as' => 'admin.servicios.borrar',
+            'uses' => 'Admin\ServiciosController@borrar'
+        ]);
+        Route::patch('/modificar', [
+            'as' => 'admin.servicios.modificar',
+            'uses' => 'Admin\ServiciosController@guardar'
+        ]);
+        Route::post('/guardar', [
+            'as' => 'admin.servicios.guardar',
+            'uses' => 'Admin\ServiciosController@guardar'
+        ]);
+    });
+
     Route::prefix('/contactos')->group(function () {
         Route::get('/', [
             'as' => 'admin.contactos.index',

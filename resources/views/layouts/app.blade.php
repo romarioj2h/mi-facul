@@ -58,6 +58,9 @@
                         <li>
                             <a href="{{ route('admin.contactos.index') }}">Contactos</a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.servicios.index') }}">Servicios</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
