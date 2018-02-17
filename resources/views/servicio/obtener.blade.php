@@ -33,4 +33,105 @@
             @endforeach
         </div>
     </div>
+    <hr>
+    <h3 class="text-center">Comentários</h3>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                Para comentar y evaluar ingrese con
+            </h5>
+            <p class="card-text">
+                <button onclick="login.google()" type="button" class="btn btn-info">
+                    <i class="fab fa-google"></i> Login con Google
+                </button>
+                <button type="button" class="btn btn-info">
+                    <i class="fab fa-facebook"></i> Login con Facebook (todo)
+                </button>
+            </p>
+            <form name="login" action="#" method="post">
+                <input type="hidden" name="nombre">
+                <input type="hidden" name="email">
+                <input type="hidden" name="foto">
+                <input type="hidden" name="token">
+                <input type="hidden" name="origen">
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                Romario Huebra
+            </h5>
+            <p class="card-text">
+                tatatatatatatatatatatattatatatat
+            </p>
+        </div>
+        <hr>
+        <div class="card-body">
+            <h5 class="card-title">
+                Romario Huebra
+            </h5>
+            <p class="card-text">
+                tatatatatatatatatatatattatatatat
+            </p>
+        </div>
+        <hr>
+        <div class="card-body">
+            <h5 class="card-title">
+                Romario Huebra
+            </h5>
+            <p class="card-text">
+                tatatatatatatatatatatattatatatat
+            </p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAxZX1xBs7fiu2pgH1EMYOmI09onu-xV9k",
+            authDomain: "preguntas-108dc.firebaseapp.com",
+            databaseURL: "https://preguntas-108dc.firebaseio.com",
+            projectId: "preguntas-108dc",
+            storageBucket: "preguntas-108dc.appspot.com",
+            messagingSenderId: "304367267543"
+        };
+        firebase.initializeApp(config);
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().languageCode = 'es';
+
+        var login = {
+            google: function() {
+                firebase.auth().signInWithPopup(provider).then(function(result) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    var token = result.credential.accessToken;
+                    // The signed-in user info.
+                    var user = result.user;
+                    console.log(token);
+                    console.log(user);
+                    $('form[name="login"]').find('input[name="nombre"]').val();
+                    $('form[name="login"]').find('input[name="nombre"]').val();
+                    $('form[name="login"]').find('input[name="nombre"]').val();
+                    $('form[name="login"]').find('input[name="nombre"]').val();
+                    $('form[name="login"]').find('input[name="nombre"]').val();
+                    // ...
+                }).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    alert(errorMessage);
+                    console.log(error);
+                    // ...
+                });
+            }
+        }
+    </script>
 @endsection
