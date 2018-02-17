@@ -19,7 +19,12 @@
                     </small>
                 </div>
                 <p class="mb-1">{{ $servicio->descripcion }}</p>
-                <small>{{ $servicio->localidad }} - <i class="fab fa-whatsapp"></i></small>
+                <small>
+                    {{ $servicio->localidad }}
+                    @if(!empty($servicio->whatsapp))
+                        - <i class="fab fa-whatsapp"></i>
+                    @endif
+                </small>
             </a>
         @endforeach
     </div>

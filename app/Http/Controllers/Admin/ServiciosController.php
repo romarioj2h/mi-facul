@@ -52,6 +52,7 @@ class ServiciosController extends Controller
             $servicio->nombre = $request->input('nombre');
             $servicio->descripcion = $request->input('descripcion');
             $servicio->telefonos = $request->input('telefonos');
+            $servicio->whatsapp = $request->input('whatsapp');
             $servicio->direccion = $request->input('direccion');
             $servicio->localidad = $request->input('localidad');
             $servicio->serviciosGruposId = $request->input('serviciosGruposId');

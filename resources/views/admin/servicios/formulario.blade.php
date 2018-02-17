@@ -12,6 +12,10 @@
     <input required type="text" class="form-control" value="{{ old('telefonos', isset($servicio->telefonos) ? $servicio->telefonos : null) }}" id="telefonos" name="telefonos">
 </div>
 <div class="form-group">
+    <label for="whatsapp">WhatsApp</label>
+    <input required type="text" class="form-control" value="{{ old('whatsapp', isset($servicio->whatsapp) ? $servicio->whatsapp : null) }}" id="whatsapp" name="whatsapp">
+</div>
+<div class="form-group">
     <label for="direccion">Dirección</label>
     <input required type="text" class="form-control" value="{{ old('direccion', isset($servicio->direccion) ? $servicio->direccion : null) }}" id="direccion" name="direccion">
 </div>
