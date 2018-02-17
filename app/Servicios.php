@@ -17,4 +17,9 @@ class Servicios extends Model
     {
         return $this->belongsTo('App\ServiciosGrupos', 'serviciosGruposId');
     }
+
+    public function telefonos()
+    {
+        return explode(',', $this->telefonos);
+    }
 }

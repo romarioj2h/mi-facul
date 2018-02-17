@@ -153,3 +153,10 @@ Route::prefix('/servicios')->group(function() {
         'uses' => 'ServiciosController@obtenerServicios'
     ]);
 });
+
+Route::prefix('/servicio')->group(function() {
+    Route::get('/{id}', [
+        'as' => 'web.servicio.obtener',
+        'uses' => 'ServicioController@obtener'
+    ]);
+});
