@@ -9,7 +9,7 @@ class ServicioController extends Controller
 {
     public function obtener($id)
     {
-        $servicio = Servicios ::findOrFail($id);
+        $servicio = Servicios::findOrFail($id);
         return view('servicio.obtener', [
             'servicio' => $servicio
         ]);

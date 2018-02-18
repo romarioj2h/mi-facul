@@ -160,3 +160,8 @@ Route::prefix('/servicio')->group(function() {
         'uses' => 'ServicioController@obtener'
     ]);
 });
+
+Route::post('/login', [
+    'as' => 'web.login',
+    'uses' => 'AuthController@login'
+]);

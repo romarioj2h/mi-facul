@@ -19,6 +19,9 @@
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ $servicio->grupos->nombre }}</h6>
             <p class="card-text">
+                @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
+                    <img src="{{ Session::get('foto') }}" alt="">
+                @endif
                 {{ $servicio->descripcion }}
             </p>
             @if(!empty($servicio->whatsapp))
@@ -42,14 +45,15 @@
                 Para comentar y evaluar ingrese con
             </h5>
             <p class="card-text">
-                <button onclick="login.google()" type="button" class="btn btn-info">
+                <button onclick="loginPagina.google();" class="btn btn-info">
                     <i class="fab fa-google"></i> Login con Google
                 </button>
                 <button type="button" class="btn btn-info">
                     <i class="fab fa-facebook"></i> Login con Facebook (todo)
                 </button>
             </p>
-            <form name="login" action="#" method="post">
+            <form name="login" action="{{ route('web.login') }}" method="post">
+                {{ csrf_field() }}
                 <input type="hidden" name="nombre">
                 <input type="hidden" name="email">
                 <input type="hidden" name="foto">
@@ -104,21 +108,25 @@
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().languageCode = 'es';
 
-        var login = {
+        var loginPagina = {
             google: function() {
                 firebase.auth().signInWithPopup(provider).then(function(result) {
                     // This gives you a Google Access Token. You can use it to access the Google API.
-                    var token = result.credential.accessToken;
+                    var token = result.credential;
                     // The signed-in user info.
                     var user = result.user;
                     console.log(token);
                     console.log(user);
-                    $('form[name="login"]').find('input[name="nombre"]').val();
-                    $('form[name="login"]').find('input[name="nombre"]').val();
-                    $('form[name="login"]').find('input[name="nombre"]').val();
-                    $('form[name="login"]').find('input[name="nombre"]').val();
-                    $('form[name="login"]').find('input[name="nombre"]').val();
-                    // ...
+                    $('form[name="login"]').find('input[name="nombre"]').val(user.displayName);
+                    $('form[name="login"]').find('input[name="email"]').val(user.email);
+                    $('form[name="login"]').find('input[name="foto"]').val(user.photoURL);
+                    $('form[name="login"]').find('input[name="origen"]').val('google');
+                    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+                        $('form[name="login"]').find('input[name="token"]').val(idToken);
+                        $('form[name="login"]').submit();
+                    }).catch(function(error) {
+                        // Handle error
+                    });
                 }).catch(function(error) {
                     // Handle Errors here.
                     var errorCode = error.code;

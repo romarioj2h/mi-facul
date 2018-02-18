@@ -1,0 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: romario
+ * Date: 17/02/18
+ * Time: 18:50
+ */
+
+namespace App\Services\Firebase;
+
+
+class Config
+{
+    const PROJECT_ID = 'preguntas-108dc';
+    const CLIENT_ID = '107704653789947659927';
+    const CLIENT_EMAIL = 'firebase-adminsdk-cabtm@preguntas-108dc.iam.gserviceaccount.com';
+    const PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDm4///AAvCAIFS\nTPBMhdTDzo8QMo2ydmsSbYnpNMi3zKycL4rYwwL8g18SQsvgJGFIlLkJtkrOcqVJ\nOMVtntH9knoewPomTgDhMC5Wk6JJWwYUbeLkjAUqdMlZhdq7xBj/v2pxVvDk/FjI\n8nBC1FSATq8MzdEy7/ENvpH85ewfFshv+ufFbk6huv/T495kXrSkADT2kHH7zTAJ\n2MgH+OWLqNrI7V7DZuCvwXFcHlC1S59vjo3+oSORaV70ATtjbhYUXz+iPTit6E0m\nCNx4j2FA+mqCscCuW3sgI83JWA54b7QLJtqMAdYn2i8umEFPaTLIUIrj/rbpSHvu\nuwwCwQAFAgMBAAECggEANSeu3xYz3sMugpO/a6KQ585FTeGRkREll827hwKVpgjb\nAS8JzFri9F7LM6FIne7KLcM9cUC0KqCmsDt/ajv61KGU90EOpeRl2/HzbQ+aeEBa\nHzhoGJ0qsEpIM5G3GGyuI6y99N9i4Ji+2O5FjYEj/hD/SFeWzp8CNBuYMOx+5m3w\nmcp3vNn6pIUGvEA3hcJlRmZk9az/ofECDA5PwvFMMBtrFlIYK2H8YI1bFtAWtMQr\n24vkGjCijRHWbUfyILWLq3ea7Hz0OHUuxilWUbxPVj5AoikBkQPEkHt/IfIXYUH3\nUIPludXSQBeFUqwhcsn/g/PBreJ2x2rD3xy4LpWHSQKBgQD4UCo9RlPsoZ5Dppir\ndH9+6h8hiXlDHviWqlNN4RP95pyajk8cnlYPkBYJD+0RkMrLqGjPDrFwa8EGpjGu\nLZ7tNef8Bn7aekF/+cHp+aaPNqTSWVwCWq9DJ2BIOmKKgUL54Sl9gtmi1oEr5uE9\nEIYwlcULBe48hyrRToZYiPB+nQKBgQDuCcPJiYWINx4igcRMmKtYGwPFuhkMaUwI\na2NkiiTdk4By6kDT2CQtMUTwV/tQv60upKcZPZvteBZPjiP9z8+aVHCZBmPdUZ80\nYT5F4pP7cbYEnDGEuN6BI7HLBiN4biTxMrhXFJv2oHdj4XuaaJfythavZR5GJq/R\noKH7sC7WiQKBgFkYkn9X66b9Ooc1kJP8gf6szKzA4fS2eSW+SZOpDf5NL6W5KCOx\noFmHLpDj2QEzfcBjVe/tardWwnS7TxobHmoorGtefUexFC1yFST5wcyjI7KiA4SI\nu1gSGdbwtAjUZo64PqXdPG/UHZb+CZVah3uJUaEp6JhpO3DMhyHfSMN1AoGAK0fD\nPYWvrdC3vfZyRqsLnH1s9iqcG1GZ7X35GHK1uUP0evB00Q/fpAftTPXyUABJ8M0n\nRMOa8lZ/V/+0M5XxXVI1Ft2+kqMgm1mDBRnpZjKKsdPkfQlQC5L95Lg9AsykEubx\n9YNdyD3s91AsNSsHVa4d+c4c7wxhs2/NhAHIwmECgYEAqK4KXLyuWiQ+U47qe2mK\nkqV77rw3Nbzy/VIS7TZslb/V6Lmj+o9yusNopShJ3jXCXrFP2Lf7qXv5QlPG6xbf\nQt7H5VatP0oV7i0Nyc0kzGaKa8ZHVf3zpnnSkBdH9zd9Vdk/bKTyyHHf7Wa4lfgS\nE37G5/LuSU3sndySJTItw2Y=\n-----END PRIVATE KEY-----\n";
+}
