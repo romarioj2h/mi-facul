@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @include('partials.alerta')
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">
@@ -19,9 +20,6 @@
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ $servicio->grupos->nombre }}</h6>
             <p class="card-text">
-                @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
-                    <img src="{{ Session::get('foto') }}" alt="">
-                @endif
                 {{ $servicio->descripcion }}
             </p>
             @if(!empty($servicio->whatsapp))
@@ -39,58 +37,64 @@
     <hr>
     <h3 class="text-center">Comentários</h3>
     <hr>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">
-                Para comentar y evaluar ingrese con
-            </h5>
-            <p class="card-text">
-                <button onclick="loginPagina.google();" class="btn btn-info">
-                    <i class="fab fa-google"></i> Login con Google
-                </button>
-                <button type="button" class="btn btn-info">
-                    <i class="fab fa-facebook"></i> Login con Facebook (todo)
-                </button>
-            </p>
-            <form name="login" action="{{ route('web.login') }}" method="post">
-                {{ csrf_field() }}
-                <input type="hidden" name="nombre">
-                <input type="hidden" name="email">
-                <input type="hidden" name="foto">
-                <input type="hidden" name="token">
-                <input type="hidden" name="origen">
-            </form>
+    @if(!\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Para comentar y evaluar ingrese con
+                </h5>
+                <p class="card-text">
+                    <button onclick="loginPagina.google();" class="btn btn-info">
+                        <i class="fab fa-google"></i> Login con Google
+                    </button>
+                    <button type="button" class="btn btn-info">
+                        <i class="fab fa-facebook"></i> Login con Facebook (todo)
+                    </button>
+                </p>
+                <form name="login" action="{{ route('web.login') }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="nombre">
+                    <input type="hidden" name="email">
+                    <input type="hidden" name="foto">
+                    <input type="hidden" name="token">
+                    <input type="hidden" name="origen">
+                </form>
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">
-                Romario Huebra
-            </h5>
-            <p class="card-text">
-                tatatatatatatatatatatattatatatat
-            </p>
+    @else
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <img style="width: 100px;" src="{{ Session::get('foto') }}" class="img-thumbnail">
+                    {{ Session::get('nombre') }}
+                </h5>
+                <form name="comentar" action="{{ route('web.servicio.comentar', ['id' => $servicio->id]) }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" value="{{ Session::get('usuarioId') }}" name="usuarioId">
+                    <textarea class="form-control" name="comentario" id="" cols="30" rows="4" placeholder="Escriba su comentário acá"></textarea>
+                    <button style="margin-top: 10px;" class="btn btn-info float-right">Comentar</button>
+                </form>
+            </div>
         </div>
+    @endif
+    @if($servicio->comentarios->count() > 0)
         <hr>
-        <div class="card-body">
-            <h5 class="card-title">
-                Romario Huebra
-            </h5>
-            <p class="card-text">
-                tatatatatatatatatatatattatatatat
-            </p>
+        <div class="card">
+            @foreach($servicio->comentarios as $comentario)
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <img style="width: 75px;" src="{{ $comentario->usuario->foto }}" class="img-thumbnail">
+                        {{ $comentario->usuario->nombre }}
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ date('d/m/Y', strtotime($comentario->creadoEn)) }}</h6>
+                    <p class="card-text">
+                        {{ $comentario->comentario }}
+                    </p>
+                </div>
+                <hr>
+            @endforeach
         </div>
-        <hr>
-        <div class="card-body">
-            <h5 class="card-title">
-                Romario Huebra
-            </h5>
-            <p class="card-text">
-                tatatatatatatatatatatattatatatat
-            </p>
-        </div>
-    </div>
+    @endif
 
     <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
     <script>

@@ -159,6 +159,11 @@ Route::prefix('/servicio')->group(function() {
         'as' => 'web.servicio.obtener',
         'uses' => 'ServicioController@obtener'
     ]);
+
+    Route::post('/{id}/comentar', [
+        'as' => 'web.servicio.comentar',
+        'uses' => 'ComentariosController@comentar'
+    ]);
 });
 
 Route::post('/login', [

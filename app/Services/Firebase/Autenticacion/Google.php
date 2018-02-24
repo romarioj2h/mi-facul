@@ -11,7 +11,6 @@ namespace App\Services\Firebase\Autenticacion;
 
 use App\Services\Firebase\ServiceAccountFactory;
 use Firebase\Auth\Token\Exception\InvalidToken;
-use Firebase\Auth\Token\Exception\IssuedInTheFuture;
 use Kreait\Firebase\Factory;
 
 class Google implements AutenticadorInterface

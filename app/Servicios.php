@@ -18,6 +18,11 @@ class Servicios extends Model
         return $this->belongsTo('App\ServiciosGrupos', 'serviciosGruposId');
     }
 
+    public function comentarios()
+    {
+        return $this->hasMany('App\ServiciosComentarios', 'serviciosId')->orderByDesc(ServiciosComentarios::CREATED_AT);
+    }
+
     public function telefonos()
     {
         return explode(',', $this->telefonos);

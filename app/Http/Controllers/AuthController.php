@@ -33,6 +33,7 @@ class AuthController extends Controller
             $request->session()->put('nombre', $nombre);
             $request->session()->put('foto', $foto);
             $request->session()->put('origen', $origen);
+            $request->session()->put('usuarioId', $usuario->id);
         }
         return back();
     }

@@ -9,6 +9,7 @@ class Usuarios extends Model
     const UPDATED_AT = 'actualizadoEn';
     const CREATED_AT = 'creadoEn';
     const TABLE = 'usuarios';
+    protected $table = self::TABLE;
 
     //
     public static function obtenerPorEmail($email)
@@ -18,5 +19,10 @@ class Usuarios extends Model
             return false;
         }
         return $usuario->first();
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany('App\ServiciosComentarios', 'usuariosId');
     }
 }
