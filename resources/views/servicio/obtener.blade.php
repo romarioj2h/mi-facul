@@ -10,12 +10,19 @@
         <div class="card-body">
             <h5 class="card-title">
                 {{ $servicio->nombre }}
-                <small class="float-right" style="color: #e9cc14">
+                <span style="color: #e9cc14">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half"></i>
+                </span>
+                <small class="float-right">
+                    @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
+                        <button class="btn btn-info" data-toggle="modal" data-target="#evaluar">Evaluar</button>
+                    @else
+                        <button onclick="document.getElementById('card-login').scrollIntoView();" class="btn btn-info">Loguese para evaluar!</button onclick="document.getElementById('card-login').scrollIntoView();" >
+                    @endif
                 </small>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ $servicio->grupos->nombre }}</h6>
@@ -38,7 +45,7 @@
     <h3 class="text-center">Comentários</h3>
     <hr>
     @if(!\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
-        <div class="card">
+        <div class="card" id="card-login">
             <div class="card-body">
                 <h5 class="card-title">
                     Para comentar y evaluar ingrese con
@@ -65,12 +72,12 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">
-                    <img style="width: 100px;" src="{{ Session::get('foto') }}" class="img-thumbnail">
-                    {{ Session::get('nombre') }}
+                    <img style="width: 100px;" src="{{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->foto }}" class="img-thumbnail">
+                    {{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}
                 </h5>
                 <form name="comentar" action="{{ route('web.servicio.comentar', ['id' => $servicio->id]) }}" method="post">
                     {{ csrf_field() }}
-                    <input type="hidden" value="{{ Session::get('usuarioId') }}" name="usuarioId">
+                    <input type="hidden" value="{{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->usuarioId }}" name="usuarioId">
                     <textarea class="form-control" name="comentario" id="" cols="30" rows="4" placeholder="Escriba su comentário acá"></textarea>
                     <button style="margin-top: 10px;" class="btn btn-info float-right">Comentar</button>
                 </form>
@@ -96,6 +103,39 @@
         </div>
     @endif
 
+    @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
+        <div class="modal fade" id="evaluar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Que tal te pareció este servicio?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset class="starability-basic">
+                            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="rating" value="1" />
+                            <label for="first-rate1" title="Horrível">1 star</label>
+                            <input type="radio" id="first-rate2" name="rating" value="2" />
+                            <label for="first-rate2" title="Ruim">2 stars</label>
+                            <input type="radio" id="first-rate3" name="rating" value="3" />
+                            <label for="first-rate3" title="Médio">3 stars</label>
+                            <input type="radio" id="first-rate4" name="rating" value="4" />
+                            <label for="first-rate4" title="Bom">4 stars</label>
+                            <input type="radio" id="first-rate5" name="rating" value="5" />
+                            <label for="first-rate5" title="Incrível">5 stars</label>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Evaluar!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -114,6 +154,7 @@
 
         var loginPagina = {
             google: function() {
+                web.tapa.show();
                 firebase.auth().signInWithPopup(provider).then(function(result) {
                     // This gives you a Google Access Token. You can use it to access the Google API.
                     var token = result.credential;
@@ -129,7 +170,7 @@
                         $('form[name="login"]').find('input[name="token"]').val(idToken);
                         $('form[name="login"]').submit();
                     }).catch(function(error) {
-                        // Handle error
+                        web.tapa.remove();
                     });
                 }).catch(function(error) {
                     // Handle Errors here.
@@ -141,6 +182,7 @@
                     var credential = error.credential;
                     alert(errorMessage);
                     console.log(error);
+                    web.tapa.remove();
                     // ...
                 });
             }

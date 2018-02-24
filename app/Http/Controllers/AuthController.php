@@ -37,4 +37,10 @@ class AuthController extends Controller
         }
         return back();
     }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return back();
+    }
 }

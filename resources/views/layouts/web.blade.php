@@ -12,10 +12,13 @@
 
     <title>{{ config('app.name', 'Preguntas') }}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/sketchy/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/starability-basic.min.css">
+    <link rel="stylesheet" href="/css/web.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="/js/web.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113894471-1"></script>
@@ -64,9 +67,17 @@
             <h4 id="resultado" class="text-center text-success"></h4>
         </div>
         @yield('content')
+        <br>
+        <br>
+        <br>
+
+        @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
+            <hr>
+            <p>
+                Logueado como {{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}
+                <a onclick="web.tapa.show();" class="btn btn-link" href="{{ route('web.logout') }}">Salir</a>
+            </p>
+        @endif
     </div>
-    <br>
-    <br>
-    <br>
 </body>
 </html>

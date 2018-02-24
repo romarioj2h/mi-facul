@@ -160,7 +160,7 @@ Route::prefix('/servicio')->group(function() {
         'uses' => 'ServicioController@obtener'
     ]);
 
-    Route::post('/{id}/comentar', [
+    Route::middleware('login.sitio')->post('/{id}/comentar', [
         'as' => 'web.servicio.comentar',
         'uses' => 'ComentariosController@comentar'
     ]);
@@ -169,4 +169,8 @@ Route::prefix('/servicio')->group(function() {
 Route::post('/login', [
     'as' => 'web.login',
     'uses' => 'AuthController@login'
+]);
+Route::middleware('login.sitio')->get('/logout', [
+    'as' => 'web.logout',
+    'uses' => 'AuthController@logout'
 ]);
