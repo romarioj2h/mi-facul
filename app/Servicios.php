@@ -23,6 +23,11 @@ class Servicios extends Model
         return $this->hasMany('App\ServiciosComentarios', 'serviciosId')->orderByDesc(ServiciosComentarios::CREATED_AT);
     }
 
+    public function evaluaciones()
+    {
+        return $this->hasMany('App\ServiciosEvaluaciones', 'serviciosId');
+    }
+
     public function telefonos()
     {
         return explode(',', $this->telefonos);

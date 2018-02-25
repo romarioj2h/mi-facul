@@ -164,6 +164,11 @@ Route::prefix('/servicio')->group(function() {
         'as' => 'web.servicio.comentar',
         'uses' => 'ComentariosController@comentar'
     ]);
+
+    Route::middleware('login.sitio')->post('/{id}/evaluar', [
+        'as' => 'web.servicio.evaluar',
+        'uses' => 'EvaluacionesController@evaluar'
+    ]);
 });
 
 Route::post('/login', [

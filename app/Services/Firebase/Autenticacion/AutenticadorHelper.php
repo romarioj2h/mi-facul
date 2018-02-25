@@ -19,6 +19,10 @@ class AutenticadorHelper
         return Session::exists('email');
     }
 
+    /**
+     * Todo refactor retornar objecto usuario
+     * @return bool|stdClass
+     */
     public static function obtenerDatos()
     {
         if (self::estaLogueado()) {

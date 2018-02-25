@@ -77,7 +77,6 @@
                 </h5>
                 <form name="comentar" action="{{ route('web.servicio.comentar', ['id' => $servicio->id]) }}" method="post">
                     {{ csrf_field() }}
-                    <input type="hidden" value="{{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->usuarioId }}" name="usuarioId">
                     <textarea class="form-control" name="comentario" id="" cols="30" rows="4" placeholder="Escriba su comentário acá"></textarea>
                     <button style="margin-top: 10px;" class="btn btn-info float-right">Comentar</button>
                 </form>
@@ -106,32 +105,35 @@
     @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
         <div class="modal fade" id="evaluar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Que tal te pareció este servicio?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                <form action="{{ route('web.servicio.evaluar', ['id' => $servicio->id]) }}" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Que tal te pareció este servicio?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                {{ csrf_field() }}
+                                <fieldset class="starability-basic">
+                                    <input type="radio" id="no-rate" class="input-no-rate" name="valor" value="0" checked aria-label="No rating." />
+                                    <input {{ (isset($evaluacion) && $evaluacion->valor == '1')? 'checked' : '' }} type="radio" id="first-rate1" name="valor" value="1" />
+                                    <label for="first-rate1" title="Horríble">1 estrella</label>
+                                    <input {{ (isset($evaluacion) && $evaluacion->valor == '2')? 'checked' : '' }} type="radio" id="first-rate2" name="valor" value="2" />
+                                    <label for="first-rate2" title="Malo">2 estrellas</label>
+                                    <input {{ (isset($evaluacion) && $evaluacion->valor == '3')? 'checked' : '' }} type="radio" id="first-rate3" name="valor" value="3" />
+                                    <label for="first-rate3" title="Médio">3 estrellas</label>
+                                    <input {{ (isset($evaluacion) && $evaluacion->valor == '4')? 'checked' : '' }} type="radio" id="first-rate4" name="valor" value="4" />
+                                    <label for="first-rate4" title="Bueno">4 estrellas</label>
+                                    <input {{ (isset($evaluacion) && $evaluacion->valor == '5')? 'checked' : '' }} type="radio" id="first-rate5" name="valor" value="5" />
+                                    <label for="first-rate5" title="Increíble">5 estrellas</label>
+                                </fieldset>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Evaluar!</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <fieldset class="starability-basic">
-                            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
-                            <input type="radio" id="first-rate1" name="rating" value="1" />
-                            <label for="first-rate1" title="Horrível">1 star</label>
-                            <input type="radio" id="first-rate2" name="rating" value="2" />
-                            <label for="first-rate2" title="Ruim">2 stars</label>
-                            <input type="radio" id="first-rate3" name="rating" value="3" />
-                            <label for="first-rate3" title="Médio">3 stars</label>
-                            <input type="radio" id="first-rate4" name="rating" value="4" />
-                            <label for="first-rate4" title="Bom">4 stars</label>
-                            <input type="radio" id="first-rate5" name="rating" value="5" />
-                            <label for="first-rate5" title="Incrível">5 stars</label>
-                        </fieldset>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Evaluar!</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     @endif

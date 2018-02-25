@@ -25,4 +25,9 @@ class Usuarios extends Model
     {
         return $this->hasMany('App\ServiciosComentarios', 'usuariosId');
     }
+
+    public function evaluaciones()
+    {
+        return $this->hasMany('App\ServiciosEvaluaciones', 'usuariosId');
+    }
 }
