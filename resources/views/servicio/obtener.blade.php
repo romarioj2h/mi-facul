@@ -8,9 +8,7 @@
     @include('partials.alerta')
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">
-                {{ $servicio->nombre }}
-                -
+            <h4 class="text-center">
                 {{ number_format($servicio->promedioEvaluaciones, 1, '.', '') }}
                 <span style="color: #e9cc14">
                     @for($i = 1; $i <= floor($servicio->promedioEvaluaciones); $i++)
@@ -20,6 +18,10 @@
                         <i class="fas fa-star-half"></i>
                     @endif
                 </span>
+                de {{ $servicio->evaluaciones->count() }} avaliaciones
+            </h4>
+            <h5 class="card-title">
+                {{ $servicio->nombre }}
                 <small class="float-right">
                     @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
                         <button class="btn btn-info" data-toggle="modal" data-target="#evaluar">Evaluar</button>
