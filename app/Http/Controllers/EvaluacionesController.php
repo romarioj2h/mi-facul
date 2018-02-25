@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\Firebase\Autenticacion\AutenticadorHelper;
-use App\ServiciosEnvaluaciones;
+use App\Servicios;
+use App\ServiciosEvaluaciones;
 use Illuminate\Http\Request;
 
 class EvaluacionesController extends Controller
@@ -15,15 +16,18 @@ class EvaluacionesController extends Controller
             'valor' => 'required|between:1,5',
         ]);
 
+        $servicio = Servicios::findOrFail($id);
         $usuario = AutenticadorHelper::obtenerDatos();
-        $evaluacion = ServiciosEnvaluaciones::obtener($id, $usuario->usuarioId);
+        $evaluacion = ServiciosEvaluaciones::obtener($id, $usuario->usuarioId);
         if ($evaluacion === false) {
-            $evaluacion = new ServiciosEnvaluaciones();
+            $evaluacion = new ServiciosEvaluaciones();
             $evaluacion->usuariosId = $usuario->usuarioId;
             $evaluacion->serviciosId = $id;
         }
         $evaluacion->valor = $request->input('valor');
         $evaluacion->save();
+        $servicio->promedioEvaluaciones = $servicio->evaluaciones->avg('valor');
+        $servicio->save();
         $request->session()->flash('mensage', [
             'tipo' => 'success',
             'mensage' => 'Gracias por su evaluación!'

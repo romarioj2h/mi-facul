@@ -10,12 +10,15 @@
         <div class="card-body">
             <h5 class="card-title">
                 {{ $servicio->nombre }}
+                -
+                {{ number_format($servicio->promedioEvaluaciones, 1, '.', '') }}
                 <span style="color: #e9cc14">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half"></i>
+                    @for($i = 1; $i <= floor($servicio->promedioEvaluaciones); $i++)
+                        <i class="fas fa-star"></i>
+                    @endfor
+                    @if (floor($servicio->promedioEvaluaciones).'.5' <= $servicio->promedioEvaluaciones)
+                        <i class="fas fa-star-half"></i>
+                    @endif
                 </span>
                 <small class="float-right">
                     @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())

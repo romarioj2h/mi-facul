@@ -11,11 +11,12 @@
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ $servicio->nombre }}</h5>
                     <small style="color: #e9cc14">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half"></i>
+                        @for($i = 1; $i <= floor($servicio->promedioEvaluaciones); $i++)
+                            <i class="fas fa-star"></i>
+                        @endfor
+                        @if (floor($servicio->promedioEvaluaciones).'.5' <= $servicio->promedioEvaluaciones)
+                            <i class="fas fa-star-half"></i>
+                        @endif
                     </small>
                 </div>
                 <p class="mb-1">{{ $servicio->descripcion }}</p>

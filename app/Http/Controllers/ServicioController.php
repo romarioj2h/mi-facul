@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Firebase\Autenticacion\AutenticadorHelper;
 use App\Servicios;
-use App\ServiciosEnvaluaciones;
+use App\ServiciosEvaluaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -14,12 +14,12 @@ class ServicioController extends Controller
     {
         $servicio = Servicios::findOrFail($id);
         $datos = [
-            'servicio' => $servicio
+            'servicio' => $servicio,
         ];
 
         if (AutenticadorHelper::estaLogueado()) {
             $usuario = AutenticadorHelper::obtenerDatos();
-            $evaluacion = ServiciosEnvaluaciones::obtener($id, $usuario->usuarioId);
+            $evaluacion = ServiciosEvaluaciones::obtener($id, $usuario->usuarioId);
             if ($evaluacion !== false) {
                 $datos['evaluacion'] = $evaluacion;
             }

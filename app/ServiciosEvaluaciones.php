@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServiciosEnvaluaciones extends Model
+class ServiciosEvaluaciones extends Model
 {
     const UPDATED_AT = 'actualizadoEn';
     const CREATED_AT = 'creadoEn';
