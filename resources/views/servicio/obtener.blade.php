@@ -92,13 +92,15 @@
         <hr>
         <div class="card">
             @foreach($servicio->comentarios as $comentario)
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <img style="width: 75px;" src="{{ $comentario->usuario->foto }}" class="img-thumbnail">
-                        {{ $comentario->usuario->nombre }}
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ date('d/m/Y', strtotime($comentario->creadoEn)) }}</h6>
-                    <p class="card-text">
+                <div style="padding: 1rem;" class="card-body row">
+                    <div class="col-md-3">
+                        <h5 class="card-title">
+                            <img style="width: 60px;" src="{{ $comentario->usuario->foto }}" class="img-thumbnail">
+                            {{ $comentario->usuario->nombre }}
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ date('d/m/Y', strtotime($comentario->creadoEn)) }}</h6>
+                    </div>
+                    <p class="card-text col-md-9">
                         {{ $comentario->comentario }}
                     </p>
                 </div>
