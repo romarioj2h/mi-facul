@@ -4,6 +4,12 @@
     {{ $servicio->nombre }}
 @endsection
 
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('web.servicios.obtenerGrupos') }}">Servicios</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('web.servicios.obtenerServicios', ['id' => $servicio->grupos->id]) }}">{{ $servicio->grupos->nombre }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ $servicio->nombre }}</li>
+@endsection
+
 @section('content')
     @include('partials.alerta')
     <div class="card">

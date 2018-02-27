@@ -67,6 +67,13 @@
             </ul>
         </div>
     </nav>
+    @if (View::hasSection('breadcrumb'))
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                @yield('breadcrumb')
+            </ol>
+        </nav>
+    @endif
     <div class="container">
         <h3 class="text-center">@yield('titulo')</h3>
         <div class="text-center">

@@ -4,6 +4,11 @@
     Servicios de {{ $grupo->nombre }}
 @endsection
 
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('web.servicios.obtenerGrupos') }}">Servicios</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ $grupo->nombre }}</li>
+@endsection
+
 @section('content')
     <div class="list-group">
         @foreach($grupo->servicios as $servicio)
