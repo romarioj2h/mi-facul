@@ -11,7 +11,7 @@
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
 
     <title>{{ config('app.name', 'Preguntas') }}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/sketchy/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/materia/bootstrap.min.css">
     <link rel="stylesheet" href="/css/starability-basic.min.css">
     <link rel="stylesheet" href="/css/web.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -45,12 +45,19 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <br>
-        <ul class="nav nav-pills nav-fill">
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ route('web.index') }}">
+        <img src="/img/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="MiFacul">
+        MiFacul
+    </a>
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.index') active @endif" href="{{ route('web.index') }}">Página inicial</a>
-            </li>
+                <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.index') active @endif" href="{{ route('web.index') }}">Página inicial</a>                </li>
             <li class="nav-item">
                 <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.servicios.obtenerGrupos') active @endif" href="{{ route('web.servicios.obtenerGrupos') }}">Servicios</a>
             </li>
@@ -58,15 +65,22 @@
                 <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.contacto') active @endif" href="{{ route('web.contacto') }}">Contacto/Anuncie</a>
             </li>
         </ul>
-        <hr>
-        <div class="jumbotron">
-            <div class="text-center">
+    </div>
+</nav>
+    </nav>
+    <div class="container">
+        <h3 class="text-center">@yield('titulo')</h3>
+        <div class="text-center">
+            <a target="_blank" href="https://api.whatsapp.com/send?phone=543412288929">
                 <img src="/img/banner.jpg" class="img-fluid">
-            </div>
-            <h3>@yield('titulo')</h3>
-            <h4 id="resultado" class="text-center text-success"></h4>
+            </a>
         </div>
-        @yield('content')
+        <h4 id="resultado" class="text-center text-success"></h4>
+        <div class="row justify-content-md-center">
+            <div class="col-md-9">
+                @yield('content')
+            </div>
+        </div>
         <br>
         <br>
         <br>
