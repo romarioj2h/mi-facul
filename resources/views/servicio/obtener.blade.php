@@ -12,29 +12,11 @@
 
 @section('content')
     @include('partials.alerta')
-    <div class="card">
+
+    <div class="card col-md-12">
         <div class="card-body">
-            <h4 class="text-center">
-                {{ number_format($servicio->promedioEvaluaciones, 1, '.', '') }}
-                <span style="color: #e9cc14">
-                    @for($i = 1; $i <= floor($servicio->promedioEvaluaciones); $i++)
-                        <i class="fas fa-star"></i>
-                    @endfor
-                    @if (floor($servicio->promedioEvaluaciones).'.5' <= $servicio->promedioEvaluaciones)
-                        <i class="fas fa-star-half"></i>
-                    @endif
-                </span>
-                de {{ $servicio->evaluaciones->count() }} avaliaciones
-            </h4>
             <h5 class="card-title">
                 {{ $servicio->nombre }}
-                <small class="float-right">
-                    @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
-                        <button class="btn btn-info" data-toggle="modal" data-target="#evaluar">Evaluar</button>
-                    @else
-                        <button onclick="document.getElementById('card-login').scrollIntoView();" class="btn btn-info">Loguese para evaluar!</button onclick="document.getElementById('card-login').scrollIntoView();" >
-                    @endif
-                </small>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ $servicio->grupos->nombre }}</h6>
             <p class="card-text">
@@ -52,6 +34,35 @@
             @endforeach
         </div>
     </div>
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="text-center">
+                        {{ number_format($servicio->promedioEvaluaciones, 1, '.', '') }}
+                        <span style="color: #e9cc14">
+                        @for($i = 1; $i <= floor($servicio->promedioEvaluaciones); $i++)
+                                <i class="fas fa-star"></i>
+                            @endfor
+                            @if (floor($servicio->promedioEvaluaciones).'.5' <= $servicio->promedioEvaluaciones)
+                                <i class="fas fa-star-half"></i>
+                            @endif
+                    </span>
+                    <br>
+                    {{ $servicio->evaluaciones->count() }} avaliaciones
+                    </h4>
+                    <small class="align-content-center">
+                        @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
+                            <button class="btn btn-info" data-toggle="modal" data-target="#evaluar">Evaluar</button>
+                        @else
+                            <button onclick="document.getElementById('card-login').scrollIntoView();" class="btn btn-info">Loguese para evaluar!</button onclick="document.getElementById('card-login').scrollIntoView();" >
+                        @endif
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
     <hr>
     <h3 class="text-center">Comentários</h3>
     <hr>
@@ -61,14 +72,18 @@
                 <h5 class="card-title">
                     Para comentar y evaluar ingrese con
                 </h5>
-                <p class="card-text">
-                    <button onclick="loginPagina.google();" class="btn btn-info">
-                        <i class="fab fa-google"></i> Login con Google
-                    </button>
-                    <button type="button" class="btn btn-info">
-                        <i class="fab fa-facebook"></i> Login con Facebook (todo)
-                    </button>
-                </p>
+                <div class="row">
+                    <div style="padding-top: 5px" class="col-md-6 align-content-center">
+                        <button onclick="loginPagina.google();" class="btn btn-info">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                    </div>
+                    <div style="padding-top: 5px" class="col-md-6 align-content-center">
+                        <button type="button" class="btn btn-info">
+                            <i class="fab fa-facebook"></i> Facebook (todo)
+                        </button>
+                    </div>
+                </div>
                 <form name="login" action="{{ route('web.login') }}" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name="nombre">
