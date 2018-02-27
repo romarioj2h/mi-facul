@@ -45,28 +45,27 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{ route('web.index') }}">
-        <img src="/img/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="MiFacul">
-        MiFacul
-    </a>
-    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ route('web.index') }}">
+            <img src="/img/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="MiFacul">
+            MiFacul
+        </a>
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.index') active @endif" href="{{ route('web.index') }}">Página inicial</a>                </li>
-            <li class="nav-item">
-                <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.servicios.obtenerGrupos') active @endif" href="{{ route('web.servicios.obtenerGrupos') }}">Servicios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.contacto') active @endif" href="{{ route('web.contacto') }}">Contacto/Anuncie</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.index') active @endif" href="{{ route('web.index') }}">Página inicial</a>                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.servicios.obtenerGrupos') active @endif" href="{{ route('web.servicios.obtenerGrupos') }}">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.contacto') active @endif" href="{{ route('web.contacto') }}">Contacto/Anuncie</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <div class="container">
         <h3 class="text-center">@yield('titulo')</h3>
