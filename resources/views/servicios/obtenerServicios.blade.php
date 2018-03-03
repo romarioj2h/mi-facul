@@ -11,6 +11,10 @@
 
 @section('content')
     <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active">
+            <b>Agregar mi servicio</b>
+            <i class="fas fa-plus float-right"></i>
+        </a>
         @foreach($grupo->servicios as $servicio)
             <a href="{{ route('web.servicio.obtener', ['id' => $servicio->id]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">

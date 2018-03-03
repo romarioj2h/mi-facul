@@ -171,6 +171,10 @@ Route::prefix('/servicio')->group(function() {
     ]);
 });
 
+Route::get('/socialLogin', [
+    'as' => 'web.login.obtener',
+    'uses' => 'AuthController@obtener'
+]);
 Route::post('/socialLogin', [
     'as' => 'web.login',
     'uses' => 'AuthController@login'

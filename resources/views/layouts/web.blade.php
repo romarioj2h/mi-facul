@@ -70,16 +70,23 @@
             @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
                 <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
                     <li class="nav-item">
-                    <span class="nav-link">
-                        {{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}
-                    </span>
+                        <span class="nav-link">
+                            {{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('web.logout') }}">Mis servicios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('web.logout') }}">Salir</a>
                     </li>
                 </ul>
             @else
-                logar
+                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('web.login.obtener') }}">Ingresar</a>
+                    </li>
+                </ul>
             @endif
         </div>
     </nav>

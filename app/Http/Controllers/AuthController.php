@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Services\Firebase\Autenticacion\AutenticadorFactory;
+use App\Services\Firebase\Autenticacion\AutenticadorHelper;
 use App\Usuarios;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    public function obtener() {
+        if (AutenticadorHelper::estaLogueado()) {
+            return redirect()->route('web.index');
+        }
+        return view('socialLogin.index');
+    }
+
     public function login(Request $request)
     {
         $origen = $request->input('origen');
