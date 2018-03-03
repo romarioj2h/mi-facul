@@ -171,11 +171,11 @@ Route::prefix('/servicio')->group(function() {
     ]);
 });
 
-Route::post('/login', [
+Route::post('/socialLogin', [
     'as' => 'web.login',
     'uses' => 'AuthController@login'
 ]);
-Route::middleware('login.sitio')->get('/logout', [
+Route::middleware('login.sitio')->get('/socialLogout', [
     'as' => 'web.logout',
     'uses' => 'AuthController@logout'
 ]);

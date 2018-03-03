@@ -9,16 +9,21 @@
     @include('partials.alerta')
     <form action="{{ route('web.contacto.guardar') }}" method="post" name="contato">
         {{ csrf_field() }}
-        <div class="row">
-            <div class="form-group col">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre">
+        @if (!\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
+            <div class="row">
+                <div class="form-group col">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre">
+                </div>
+                <div class="form-group col">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
             </div>
-            <div class="form-group col">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email">
-            </div>
-        </div>
+        @else
+            <input type="hidden" class="form-control" id="nombre" name="nombre" value="{{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}">
+            <input type="hidden" class="form-control" id="email" name="email" value="{{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->email }}">
+        @endif
         <div class="form-group">
             <label for="asunto">Asunto</label>
             <input type="text" class="form-control" id="asunto" name="asunto">

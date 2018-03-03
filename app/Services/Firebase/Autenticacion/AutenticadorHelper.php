@@ -9,6 +9,7 @@
 namespace App\Services\Firebase\Autenticacion;
 
 
+use App\Usuarios;
 use Illuminate\Support\Facades\Session;
 use stdClass;
 
@@ -20,20 +21,13 @@ class AutenticadorHelper
     }
 
     /**
-     * Todo refactor retornar objecto usuario
      * @return bool|stdClass
      */
     public static function obtenerDatos()
     {
         if (self::estaLogueado()) {
-            $datos = new stdClass();
-            $datos->token = Session::get('token');
-            $datos->email = Session::get('email');
-            $datos->nombre = Session::get('nombre');
-            $datos->foto = Session::get('foto');
-            $datos->origen = Session::get('origen');
-            $datos->usuarioId = Session::get('usuarioId');
-            return $datos;
+            $usuarioId = Session::get('usuarioId');
+            return Usuarios::findOrFail($usuarioId);
         }
         return false;
     }

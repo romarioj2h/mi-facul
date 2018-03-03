@@ -57,7 +57,8 @@
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.index') active @endif" href="{{ route('web.index') }}">Página inicial</a>                </li>
+                    <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.index') active @endif" href="{{ route('web.index') }}">Página inicial</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.servicios.obtenerGrupos') active @endif" href="{{ route('web.servicios.obtenerGrupos') }}">Servicios</a>
                 </li>
@@ -65,6 +66,21 @@
                     <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.contacto') active @endif" href="{{ route('web.contacto') }}">Contacto/Anuncie</a>
                 </li>
             </ul>
+
+            @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
+                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                    <li class="nav-item">
+                    <span class="nav-link">
+                        {{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}
+                    </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('web.logout') }}">Salir</a>
+                    </li>
+                </ul>
+            @else
+                logar
+            @endif
         </div>
     </nav>
     @if (View::hasSection('breadcrumb'))
@@ -90,14 +106,6 @@
         <br>
         <br>
         <br>
-
-        @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
-            <hr>
-            <p>
-                Logueado como {{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}
-                <a onclick="web.tapa.show();" class="btn btn-link" href="{{ route('web.logout') }}">Salir</a>
-            </p>
-        @endif
     </div>
 </body>
 </html>
