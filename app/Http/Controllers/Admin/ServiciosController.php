@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\StringsHelper;
 use App\Servicios;
 use App\ServiciosGrupos;
 use Illuminate\Http\Request;
@@ -57,6 +58,7 @@ class ServiciosController extends Controller
             }
 
             $servicio->nombre = $request->input('nombre');
+            $servicio->slug = StringsHelper::generarSlug($request->input('nombre'));
             $servicio->descripcion = $request->input('descripcion');
             $servicio->telefonos = $request->input('telefonos');
             $servicio->whatsapp = $request->input('whatsapp');

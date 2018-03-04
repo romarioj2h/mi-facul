@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\StringsHelper;
 use App\Services\Firebase\Autenticacion\AutenticadorHelper;
 use App\Servicios;
 use App\ServiciosEvaluaciones;
@@ -48,11 +49,9 @@ class ServicioController extends Controller
             $this->validate($request, $this->obtenerReglasValidacion($id));
             $servicio = Servicios::findOrFail($id);
         }
-        $slug = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$request->input('nombre'));
-        $slug = strtolower(str_replace(' ', '-', $slug));
 
         $servicio->nombre = $request->input('nombre');
-        $servicio->slug = $request->input('slug');
+        $servicio->slug = StringsHelper::generarSlug($request->input('nombre'));
         $servicio->descripcion = $request->input('descripcion');
         $servicio->telefonos = $request->input('telefonos');
         $servicio->whatsapp = $request->input('whatsapp');
