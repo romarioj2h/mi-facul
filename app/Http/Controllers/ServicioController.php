@@ -65,7 +65,7 @@ class ServicioController extends Controller
             'tipo' => 'success',
             'mensage' => 'El servicio está pediente de moderación, en algunas horas ya lo tenemos! '
         ]);
-        return redirect()->route('web.servicios.obtenerGrupos');
+        return redirect()->route('web.servicios.mis');
     }
 
     private function obtenerReglasValidacion($id = null)

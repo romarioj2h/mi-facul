@@ -75,7 +75,7 @@
                         </span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('web.logout') }}">Mis servicios</a>
+                        <a class="nav-link" href="{{ route('web.servicios.mis') }}">Mis servicios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('web.logout') }}">Salir</a>

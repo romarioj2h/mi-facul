@@ -152,6 +152,10 @@ Route::prefix('/servicios')->group(function() {
         'as' => 'web.servicios.obtenerGrupos',
         'uses' => 'ServiciosController@obtenerGrupos'
     ]);
+    Route::middleware('login.sitio')->get('/mis', [
+        'as' => 'web.servicios.mis',
+        'uses' => 'ServiciosController@mis'
+    ]);
     Route::get('/{id}', [
         'as' => 'web.servicios.obtenerServicios',
         'uses' => 'ServiciosController@obtenerServicios'
