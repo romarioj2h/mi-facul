@@ -60,6 +60,10 @@ Route::middleware('auth')->prefix('/admin')->group(function() {
             'as' => 'admin.servicios.agregar',
             'uses' => 'Admin\ServiciosController@agregar'
         ]);
+        Route::get('/aprobar/{id}', [
+            'as' => 'admin.servicios.aprobar',
+            'uses' => 'Admin\ServiciosController@aprobar'
+        ]);
         Route::get('/editar/{id}', [
             'as' => 'admin.servicios.editar',
             'uses' => 'Admin\ServiciosController@editar'

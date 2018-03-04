@@ -11,11 +11,20 @@ class Servicios extends Model
     const TABLE = 'servicios';
     const ITEMS_POR_PAGINA = 10;
 
+    const ESTADO_PENDIENTE = 'PENDIENTE';
+    const ESTADO_APROBADO = 'APROBADO';
+    const ESTADO_RECHAZADO = 'RECHAZADO';
+
     protected $table = self::TABLE;
 
     public function grupos()
     {
         return $this->belongsTo('App\ServiciosGrupos', 'serviciosGruposId');
+    }
+
+    public function usuarios()
+    {
+        return $this->belongsTo('App\Usuarios', 'usuariosId');
     }
 
     public function comentarios()

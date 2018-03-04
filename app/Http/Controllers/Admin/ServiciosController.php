@@ -12,7 +12,7 @@ class ServiciosController extends Controller
     public function index()
     {
         return view('admin.servicios.index', [
-            'servicios' => Servicios::paginate(Servicios::ITEMS_POR_PAGINA)
+            'servicios' => Servicios::orderBy('id', 'desc')->paginate(Servicios::ITEMS_POR_PAGINA)
         ]);
     }
 
@@ -21,6 +21,13 @@ class ServiciosController extends Controller
         return view('admin.servicios.agregar', [
             'grupos' => ServiciosGrupos::all()
         ]);
+    }
+
+    public function aprobar($id) {
+        $servicio = Servicios::findOrFail($id);
+        $servicio->estado = Servicios::ESTADO_APROBADO;
+        $servicio->save();
+        return redirect()->route('admin.servicios.index');
     }
 
     public function editar($id)

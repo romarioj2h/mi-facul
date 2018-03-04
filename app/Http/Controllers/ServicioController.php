@@ -13,7 +13,7 @@ class ServicioController extends Controller
 {
     public function obtener(Request $request, $id)
     {
-        $servicio = Servicios::findOrFail($id);
+        $servicio = Servicios::where('estado', '=', Servicios::ESTADO_APROBADO)->findOrFail($id);
         $datos = [
             'servicio' => $servicio,
         ];

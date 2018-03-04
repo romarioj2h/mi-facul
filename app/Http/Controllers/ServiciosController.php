@@ -19,7 +19,8 @@ class ServiciosController extends Controller
     {
         $grupo = ServiciosGrupos::findOrFail($id);
         return view('servicios.obtenerServicios', [
-            'grupo' => $grupo
+            'grupo' => $grupo,
+            'servicios' => $grupo->servicios->where('estado', '=', Servicios::ESTADO_APROBADO)
         ]);
     }
 }
