@@ -169,7 +169,7 @@ Route::prefix('/servicio')->group(function() {
         'uses' => 'ServicioController@guardar'
     ]);
 
-    Route::get('/{id}', [
+    Route::get('/{id}/{slug}', [
         'as' => 'web.servicio.obtener',
         'uses' => 'ServicioController@obtener'
     ]);

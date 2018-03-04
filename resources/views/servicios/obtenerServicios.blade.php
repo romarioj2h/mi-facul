@@ -16,7 +16,7 @@
             <i class="fas fa-plus float-right"></i>
         </a>
         @foreach($servicios as $servicio)
-            <a href="{{ route('web.servicio.obtener', ['id' => $servicio->id]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="{{ route('web.servicio.obtener', ['id' => $servicio->id, 'slug' => $servicio->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ $servicio->nombre }}</h5>
                     <small style="color: #e9cc14">
