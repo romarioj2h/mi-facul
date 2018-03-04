@@ -15,7 +15,7 @@ class ComentariosController extends Controller
         ]);
 
         $comentario = new ServiciosComentarios();
-        $comentario->usuariosId = AutenticadorHelper::obtenerDatos()->usuarioId;
+        $comentario->usuariosId = AutenticadorHelper::obtenerDatos()->id;
         $comentario->serviciosId = $id;
         $comentario->comentario = $request->input('comentario');
         $comentario->save();

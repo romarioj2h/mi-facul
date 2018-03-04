@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active">
+        <a href="{{ route('web.servicio.agregar') }}" class="list-group-item list-group-item-action active">
             <b>Agregar mi servicio</b>
             <i class="fas fa-plus float-right"></i>
         </a>

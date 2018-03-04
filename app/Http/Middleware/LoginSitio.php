@@ -17,7 +17,7 @@ class LoginSitio
     public function handle($request, Closure $next)
     {
         if (!AutenticadorHelper::estaLogueado()) {
-            return back();
+            return redirect()->route('web.login');
         }
         return $next($request);
     }

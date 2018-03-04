@@ -155,6 +155,16 @@ Route::prefix('/servicios')->group(function() {
 });
 
 Route::prefix('/servicio')->group(function() {
+    Route::middleware('login.sitio')->get('/agregar', [
+        'as' => 'web.servicio.agregar',
+        'uses' => 'ServicioController@agregar'
+    ]);
+
+    Route::middleware('login.sitio')->post('/guardar', [
+        'as' => 'web.servicio.guardar',
+        'uses' => 'ServicioController@guardar'
+    ]);
+
     Route::get('/{id}', [
         'as' => 'web.servicio.obtener',
         'uses' => 'ServicioController@obtener'

@@ -18,10 +18,10 @@ class EvaluacionesController extends Controller
 
         $servicio = Servicios::findOrFail($id);
         $usuario = AutenticadorHelper::obtenerDatos();
-        $evaluacion = ServiciosEvaluaciones::obtener($id, $usuario->usuarioId);
+        $evaluacion = ServiciosEvaluaciones::obtener($id, $usuario->id);
         if ($evaluacion === false) {
             $evaluacion = new ServiciosEvaluaciones();
-            $evaluacion->usuariosId = $usuario->usuarioId;
+            $evaluacion->usuariosId = $usuario->id;
             $evaluacion->serviciosId = $id;
         }
         $evaluacion->valor = $request->input('valor');
