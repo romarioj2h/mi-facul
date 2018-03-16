@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="list-group">
+    <div class="list-group" id="servicios">
         <a href="{{ route('web.servicio.agregar') }}" class="list-group-item list-group-item-action active">
             <b>Agregar mi servicio</b>
             <i class="fas fa-plus float-right"></i>

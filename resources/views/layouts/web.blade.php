@@ -65,29 +65,32 @@
                 <li class="nav-item">
                     <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.contacto') active @endif" href="{{ route('web.contacto') }}">Contacto/Anuncie</a>
                 </li>
-            </ul>
-
-            @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
-                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                @if(\App\Services\Firebase\Autenticacion\AutenticadorHelper::estaLogueado())
                     <li class="nav-item">
                         <span class="nav-link">
-                            {{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}
+                            <b>
+                                {{ \App\Services\Firebase\Autenticacion\AutenticadorHelper::obtenerDatos()->nombre }}
+                            </b>
                         </span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('web.servicios.mis') }}">Mis servicios</a>
+                        <b>
+                            <a class="nav-link" href="{{ route('web.servicios.mis') }}">Mis servicios</a>
+                        </b>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('web.logout') }}">Salir</a>
+                        <b>
+                            <a class="nav-link" href="{{ route('web.logout') }}">Salir</a>
+                        </b>
                     </li>
-                </ul>
-            @else
-                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('web.login.obtener') }}">Ingresar</a>
+                        <b>
+                            <a class="nav-link" href="{{ route('web.login.obtener') }}">Ingresar</a>
+                        </b>
                     </li>
-                </ul>
-            @endif
+                @endif
+            </ul>
         </div>
     </nav>
     @if (View::hasSection('breadcrumb'))

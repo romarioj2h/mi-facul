@@ -1,4 +1,4 @@
-<a href="{{ route('web.servicio.obtener', ['id' => $servicio->id, 'slug' => $servicio->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+<div class="list-group-item list-group-item-action flex-column align-items-start  @if($servicio->estado == \App\Servicios::ESTADO_PENDIENTE) list-group-item-warning @elseif($servicio->estado == \App\Servicios::ESTADO_RECHAZADO) list-group-item-danger @endif">
     <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{ $servicio->nombre }}</h5>
         <small style="color: #e9cc14">
@@ -17,4 +17,16 @@
             - <i class="fab fa-whatsapp"></i>
         @endif
     </small>
-</a>
+    <div class="d-flex w-100 justify-content-between">
+        <h6>Estado: {{ $servicio->estado }}</h6>
+    </div>
+    <div class="d-flex w-100 justify-content-between">
+        <div class="btn-group" role="group">
+            @if ($servicio->estado == \App\Servicios::ESTADO_APROBADO)
+                <a href="{{ route('web.servicio.obtener', ['id' => $servicio->id, 'slug' => $servicio->slug]) }}" class="btn btn-link">Ver</a>
+            @endif
+            <a href="#" class="btn btn-link">Editar</a>
+            <a href="#" class="btn btn-link">Borrar</a>
+        </div>
+    </div>
+</div>
