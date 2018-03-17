@@ -15,6 +15,9 @@
                 </button>
             </div>
         </div>
+        <div style="margin-top: 15px; display: none;" id="errorLogin" class="alert alert-danger" role="alert">
+            Estamos con problemas para realizar el login, si posible contactese con nosotros!
+        </div>
         <form name="login" action="{{ route('web.login') }}" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="nombre">
@@ -60,20 +63,12 @@
                     $('form[name="login"]').find('input[name="token"]').val(idToken);
                     $('form[name="login"]').submit();
                 }).catch(function(error) {
+                    $('#errorLogin').show();
                     web.tapa.remove();
                 });
             }).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                alert(errorMessage);
-                console.log(error);
+                $('#errorLogin').show();
                 web.tapa.remove();
-                // ...
             });
         }
     }
