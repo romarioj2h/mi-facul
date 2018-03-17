@@ -7,6 +7,9 @@
     <label for="descripcion">Descripcion</label>
     <input required type="text" class="form-control" value="{{ old('descripcion', isset($servicio->descripcion) ? $servicio->descripcion : null) }}" id="descripcion" name="descripcion">
 </div>
+@if($servicio->archivo)
+    <img class="img-fluid" src="{{ url('imagenes/'.$servicio->archivo) }}" alt="{{ $servicio->archivo }}">
+@endif
 <div class="form-group">
     <label for="telefonos">Telefonos (separados por coma)</label>
     <input required type="text" class="form-control" value="{{ old('telefonos', isset($servicio->telefonos) ? $servicio->telefonos : null) }}" id="telefonos" name="telefonos">
