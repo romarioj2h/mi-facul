@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [
     'as' => 'web.index',
+    'uses' => 'WebController@index'
+]);
+
+Route::get('/gruposPreguntas', [
+    'as' => 'grupos.index',
     'uses' => 'GruposController@index'
 ]);
 

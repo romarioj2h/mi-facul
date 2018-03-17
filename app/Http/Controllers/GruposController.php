@@ -9,7 +9,7 @@ class GruposController extends Controller
 {
     public function index()
     {
-        return view('index', [
+        return view('grupos.index', [
             'grupos' => Grupos::all()
         ]);
     }

@@ -60,6 +60,9 @@
                     <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.index') active @endif" href="{{ route('web.index') }}">Página inicial</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'grupos.index') active @endif" href="{{ route('grupos.index') }}">Preguntas Medicina</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link @if(Route::getCurrentRoute()->getName() == 'web.servicios.obtenerGrupos') active @endif" href="{{ route('web.servicios.obtenerGrupos') }}">Servicios</a>
                 </li>
                 <li class="nav-item">
