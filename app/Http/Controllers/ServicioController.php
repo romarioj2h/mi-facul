@@ -59,6 +59,7 @@ class ServicioController extends Controller
         if ($request->isMethod('post')) {
             $this->validate($request, $this->obtenerReglasValidacion());
             $servicio = new Servicios();
+            $mensage = 'El servicio está pediente de moderación, en algunas horas ya lo tenemos!';
         } else {
             $id = $request->input('id');
             $this->validate($request, $this->obtenerReglasValidacion($id));
@@ -66,6 +67,7 @@ class ServicioController extends Controller
             if ($servicio->estado == Servicios::ESTADO_RECHAZADO) {
                 $servicio->estado = Servicios::ESTADO_PENDIENTE;
             }
+            $mensage = 'Su cambio fue registrado con éxito!';
         }
 
         $servicio->nombre = $request->input('nombre');
@@ -93,7 +95,7 @@ class ServicioController extends Controller
         $servicio->save();
         $request->session()->flash('mensage', [
             'tipo' => 'success',
-            'mensage' => 'El servicio está pediente de moderación, en algunas horas ya lo tenemos! '
+            'mensage' => $mensage
         ]);
         return redirect()->route('web.servicios.mis');
     }
@@ -112,5 +114,22 @@ class ServicioController extends Controller
             $reglas['id'] = 'required|integer';
         }
         return $reglas;
+    }
+
+    public function borrar(Request $request, $id)
+    {
+        $servicio = Servicios::findOrFail($id);
+        if ($servicio->usuariosId != AutenticadorHelper::obtenerDatos()->id) {
+            return redirect()->route('web.index');
+        }
+
+        $servicio->comentarios()->forceDelete();
+        $servicio->evaluaciones()->forceDelete();
+        $servicio->forceDelete();
+        $request->session()->flash('mensage', [
+            'tipo' => 'success',
+            'mensage' => 'Servicio borrado con éxito!'
+        ]);
+        return redirect()->route('web.servicios.mis');
     }
 }

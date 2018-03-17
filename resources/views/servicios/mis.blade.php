@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @include('partials.alerta')
     <div class="list-group" id="servicios">
         <a href="{{ route('web.servicio.agregar') }}" class="list-group-item list-group-item-action active">
             <b>Agregar mi servicio</b>

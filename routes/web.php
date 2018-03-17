@@ -173,6 +173,11 @@ Route::prefix('/servicio')->group(function() {
         'uses' => 'ServicioController@editar'
     ]);
 
+    Route::middleware('login.sitio')->get('/borrar/{id}', [
+        'as' => 'web.servicio.borrar',
+        'uses' => 'ServicioController@borrar'
+    ]);
+
     Route::middleware('login.sitio')->post('/guardar', [
         'as' => 'web.servicio.guardar',
         'uses' => 'ServicioController@guardar'

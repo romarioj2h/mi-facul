@@ -26,7 +26,7 @@
                 <a href="{{ route('web.servicio.obtener', ['id' => $servicio->id, 'slug' => $servicio->slug]) }}" class="btn btn-link">Ver</a>
             @endif
             <a href="{{ route('web.servicio.editar', ['id' => $servicio->id]) }}" class="btn btn-link">Editar</a>
-            <a href="#" class="btn btn-link">Borrar</a>
+            <button onclick="confirm('Está seguro que deseas borrar tu servicio?') && (location.href = '{{ route('web.servicio.borrar', ['id' => $servicio->id]) }}')" type="button" class="btn btn-link">Borrar</button>
         </div>
     </div>
 </div>
