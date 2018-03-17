@@ -3,7 +3,7 @@
         <h5 class="card-title">
             {{ $titulo }}
         </h5>
-        <div class="row">
+        <div id="botonesLogin" class="row">
             <div style="padding-top: 5px" class="col-md-6 align-content-center">
                 <button onclick="loginPagina.google();" class="btn btn-info">
                     <i class="fab fa-google"></i> Google
@@ -16,7 +16,8 @@
             </div>
         </div>
         <div style="margin-top: 15px; display: none;" id="errorLogin" class="alert alert-danger" role="alert">
-            Estamos con problemas para realizar el login, si posible contactese con nosotros!
+            <p>Estamos con problemas para realizar el login, si posible contactese con nosotros!</p>
+            <a href="{{ route('web.login.obtener') }}">Refrescar pagina y volver a intentar</a>
         </div>
         <form name="login" action="{{ route('web.login') }}" method="post">
             {{ csrf_field() }}
@@ -63,10 +64,12 @@
                     $('form[name="login"]').find('input[name="token"]').val(idToken);
                     $('form[name="login"]').submit();
                 }).catch(function(error) {
+                    $('#botonesLogin').hide();
                     $('#errorLogin').show();
                     web.tapa.remove();
                 });
             }).catch(function(error) {
+                $('#botonesLogin').hide();
                 $('#errorLogin').show();
                 web.tapa.remove();
             });
