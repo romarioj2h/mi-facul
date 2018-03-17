@@ -22,16 +22,21 @@
             <p class="card-text">
                 {{ $servicio->descripcion }}
             </p>
-            @if(!empty($servicio->whatsapp))
-                <a href="https://api.whatsapp.com/send?phone={{ preg_replace("/[^0-9,.]/", "", $servicio->whatsapp) }}" class="card-link">
-                    <i class="fab fa-whatsapp"></i> {{ $servicio->whatsapp }}
-                </a>
+            <p>
+                @if(!empty($servicio->whatsapp))
+                    <a href="https://api.whatsapp.com/send?phone={{ preg_replace("/[^0-9,.]/", "", $servicio->whatsapp) }}" class="card-link">
+                        <i class="fab fa-whatsapp"></i> {{ $servicio->whatsapp }}
+                    </a>
+                @endif
+                @foreach($servicio->telefonos() as $telefono)
+                    <a href="tel:{{ $telefono }}" class="card-link">
+                        <i class="fas fa-phone"></i> {{ $telefono }}
+                    </a>
+                @endforeach
+            </p>
+            @if($servicio->archivo)
+                <img class="img-fluid" src="{{ url('imagenes/'.$servicio->archivo) }}" alt="{{ $servicio->archivo }}">
             @endif
-            @foreach($servicio->telefonos() as $telefono)
-                <a href="tel:{{ $telefono }}" class="card-link">
-                    <i class="fas fa-phone"></i> {{ $telefono }}
-                </a>
-            @endforeach
         </div>
     </div>
     <br>

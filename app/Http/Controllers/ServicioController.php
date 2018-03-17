@@ -7,8 +7,11 @@ use App\Services\Firebase\Autenticacion\AutenticadorHelper;
 use App\Servicios;
 use App\ServiciosEvaluaciones;
 use App\ServiciosGrupos;
+use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\UnauthorizedException;
 
 class ServicioController extends Controller
 {
@@ -37,6 +40,18 @@ class ServicioController extends Controller
         ]);
     }
 
+    public function editar(Request $request, $id)
+    {
+        $servicio = Servicios::findOrFail($id);
+        if ($servicio->usuariosId != AutenticadorHelper::obtenerDatos()->id) {
+            return redirect()->route('web.index');
+        }
+        return view('servicio.editar', [
+            'grupos' => ServiciosGrupos::all(),
+            'servicio' => $servicio
+        ]);
+    }
+
     public function guardar(Request $request)
     {
         $usuario = AutenticadorHelper::obtenerDatos();
@@ -48,6 +63,9 @@ class ServicioController extends Controller
             $id = $request->input('id');
             $this->validate($request, $this->obtenerReglasValidacion($id));
             $servicio = Servicios::findOrFail($id);
+            if ($servicio->estado == Servicios::ESTADO_RECHAZADO) {
+                $servicio->estado = Servicios::ESTADO_PENDIENTE;
+            }
         }
 
         $servicio->nombre = $request->input('nombre');
@@ -58,6 +76,18 @@ class ServicioController extends Controller
         $servicio->facebook = $request->input('facebook');
         $servicio->direccion = $request->input('direccion');
         $servicio->localidad = $request->input('localidad');
+
+        if ($request->hasFile('archivo')) {
+            $destino = public_path(Servicios::RUTA_IMAGENES);
+            if ($servicio->archivo) {
+                unlink($destino.'/'.$servicio->archivo);
+            }
+            $archivo = $request->file('archivo');
+            $nombreArchivo = time().'.'.$archivo->getClientOriginalExtension();
+            $archivo->move($destino, $nombreArchivo);
+            $servicio->archivo = $nombreArchivo;
+        }
+
         $servicio->serviciosGruposId = $grupo->id;
         $servicio->usuariosId = $usuario->id;
         $servicio->save();
@@ -75,6 +105,7 @@ class ServicioController extends Controller
             'telefonos' => 'required',
             'localidad' => 'required',
             'serviciosGruposId' => 'required',
+            'archivo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
 
         if ($id) {

@@ -8,6 +8,10 @@
     <input required type="text" class="form-control" value="{{ old('descripcion', isset($servicio->descripcion) ? $servicio->descripcion : null) }}" id="descripcion" name="descripcion">
 </div>
 <div class="form-group">
+    <label for="archivo">Elija una imagen, puede ser una logo o el listado de precios</label>
+    <input type="file" class="form-control-file" id="archivo" name="archivo">
+</div>
+<div class="form-group">
     <label for="telefonos">Telefonos (separados por coma)</label>
     <input required type="text" class="form-control" value="{{ old('telefonos', isset($servicio->telefonos) ? $servicio->telefonos : null) }}" id="telefonos" name="telefonos">
 </div>

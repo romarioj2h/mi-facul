@@ -15,6 +15,8 @@ class Servicios extends Model
     const ESTADO_APROBADO = 'APROBADO';
     const ESTADO_RECHAZADO = 'RECHAZADO';
 
+    const RUTA_IMAGENES = '/imagenes';
+
     protected $table = self::TABLE;
 
     public function grupos()

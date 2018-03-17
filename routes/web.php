@@ -168,7 +168,17 @@ Route::prefix('/servicio')->group(function() {
         'uses' => 'ServicioController@agregar'
     ]);
 
+    Route::middleware('login.sitio')->get('/editar/{id}', [
+        'as' => 'web.servicio.editar',
+        'uses' => 'ServicioController@editar'
+    ]);
+
     Route::middleware('login.sitio')->post('/guardar', [
+        'as' => 'web.servicio.guardar',
+        'uses' => 'ServicioController@guardar'
+    ]);
+
+    Route::middleware('login.sitio')->patch('/guardar', [
         'as' => 'web.servicio.guardar',
         'uses' => 'ServicioController@guardar'
     ]);

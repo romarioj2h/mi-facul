@@ -25,7 +25,7 @@
             @if ($servicio->estado == \App\Servicios::ESTADO_APROBADO)
                 <a href="{{ route('web.servicio.obtener', ['id' => $servicio->id, 'slug' => $servicio->slug]) }}" class="btn btn-link">Ver</a>
             @endif
-            <a href="#" class="btn btn-link">Editar</a>
+            <a href="{{ route('web.servicio.editar', ['id' => $servicio->id]) }}" class="btn btn-link">Editar</a>
             <a href="#" class="btn btn-link">Borrar</a>
         </div>
     </div>
