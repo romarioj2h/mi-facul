@@ -10,8 +10,8 @@
                 </button>
             </div>
             <div style="padding-top: 5px" class="col-md-6 align-content-center">
-                <button type="button" class="btn btn-info">
-                    <i class="fab fa-facebook"></i> Facebook (todo)
+                <button onclick="loginPagina.facebook()" type="button" class="btn btn-info">
+                    <i class="fab fa-facebook"></i> Facebook
                 </button>
             </div>
         </div>
@@ -43,13 +43,41 @@
     };
     firebase.initializeApp(config);
 
-    var provider = new firebase.auth.GoogleAuthProvider();
+    var googleProvider = new firebase.auth.GoogleAuthProvider();
+    var facebookProvider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().languageCode = 'es';
 
     var loginPagina = {
         google: function() {
             web.tapa.show();
-            firebase.auth().signInWithPopup(provider).then(function(result) {
+            firebase.auth().signInWithPopup(googleProvider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential;
+                // The signed-in user info.
+                var user = result.user;
+                console.log(token);
+                console.log(user);
+                $('form[name="login"]').find('input[name="nombre"]').val(user.displayName);
+                $('form[name="login"]').find('input[name="email"]').val(user.email);
+                $('form[name="login"]').find('input[name="foto"]').val(user.photoURL);
+                $('form[name="login"]').find('input[name="origen"]').val('google');
+                firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+                    $('form[name="login"]').find('input[name="token"]').val(idToken);
+                    $('form[name="login"]').submit();
+                }).catch(function(error) {
+                    $('#botonesLogin').hide();
+                    $('#errorLogin').show();
+                    web.tapa.remove();
+                });
+            }).catch(function(error) {
+                $('#botonesLogin').hide();
+                $('#errorLogin').show();
+                web.tapa.remove();
+            });
+        },
+        facebook: function () {
+            web.tapa.show();
+            firebase.auth().signInWithPopup(facebookProvider).then(function(result) {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 var token = result.credential;
                 // The signed-in user info.

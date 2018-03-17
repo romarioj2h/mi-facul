@@ -18,7 +18,7 @@ class AutenticadorFactory
     public static function obtenerPorOrigen($origen)
     {
         if ($origen == 'google') {
-            return Google::class;
+            return Firebase::class;
         }
         return false;
     }

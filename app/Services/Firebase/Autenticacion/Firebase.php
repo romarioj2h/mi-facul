@@ -13,7 +13,7 @@ use App\Services\Firebase\ServiceAccountFactory;
 use Firebase\Auth\Token\Exception\InvalidToken;
 use Kreait\Firebase\Factory;
 
-class Google implements AutenticadorInterface
+class Firebase implements AutenticadorInterface
 {
 
     public static function esValido($token)
