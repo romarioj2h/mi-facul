@@ -33,6 +33,11 @@
                         <i class="fas fa-phone"></i> {{ $telefono }}
                     </a>
                 @endforeach
+                @if(!empty($servicio->facebook))
+                    <a href="{{ $servicio->facebook }}" class="card-link">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                @endif
             </p>
             @if($servicio->archivo)
                 <img class="img-fluid" src="{{ url('imagenes/'.$servicio->archivo) }}" alt="{{ $servicio->archivo }}">
