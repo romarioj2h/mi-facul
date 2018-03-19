@@ -1,4 +1,4 @@
-<div class="list-group-item list-group-item-action flex-column align-items-start  @if($servicio->estado == \App\Servicios::ESTADO_PENDIENTE) list-group-item-warning @elseif($servicio->estado == \App\Servicios::ESTADO_RECHAZADO) list-group-item-danger @endif">
+<a href="{{ route('web.servicio.obtener', ['id' => $servicio->id, 'slug' => $servicio->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{ $servicio->nombre }}</h5>
         <small style="color: #e9cc14">
@@ -17,16 +17,4 @@
             - <i class="fab fa-whatsapp"></i>
         @endif
     </small>
-    <div class="d-flex w-100 justify-content-between">
-        <h6>Estado: {{ $servicio->estado }}</h6>
-    </div>
-    <div class="d-flex w-100 justify-content-between">
-        <div class="btn-group" role="group">
-            @if ($servicio->estado == \App\Servicios::ESTADO_APROBADO)
-                <a href="{{ route('web.servicio.obtener', ['id' => $servicio->id, 'slug' => $servicio->slug]) }}" class="btn btn-link">Ver</a>
-            @endif
-            <a href="{{ route('web.servicio.editar', ['id' => $servicio->id]) }}" class="btn btn-link">Editar</a>
-            <button onclick="confirm('Está seguro que deseas borrar tu servicio?') && (location.href = '{{ route('web.servicio.borrar', ['id' => $servicio->id]) }}')" type="button" class="btn btn-link">Borrar</button>
-        </div>
-    </div>
-</div>
+</a>

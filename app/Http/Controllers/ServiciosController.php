@@ -31,4 +31,20 @@ class ServiciosController extends Controller
             'servicios' => AutenticadorHelper::obtenerDatos()->servicios
         ]);
     }
+
+    public function buscar(Request $request)
+    {
+        $terminoDeBusqueda = $request->get('q') ?? '';
+        $servicios = Servicios::where('estado', '=', Servicios::ESTADO_APROBADO)
+            ->where(function ($query) use ($terminoDeBusqueda) {
+                $query->where('nombre', 'like', '%'.$terminoDeBusqueda.'%')
+                    ->orWhere('descripcion', 'like', '%'.$terminoDeBusqueda.'%');
+            })
+            ->get();
+
+        return view('servicios.busca', [
+            'servicios' => $servicios,
+            'terminoDeBusqueda' => $terminoDeBusqueda
+        ]);
+    }
 }

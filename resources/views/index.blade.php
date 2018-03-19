@@ -5,6 +5,17 @@
 @endsection
 
 @section('content')
+    <form action="{{ route('web.servicios.busca') }}" method="get">
+        <div class="form-group">
+            <label class="sr-only" for="busqueda">Servicio</label>
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" name="q" id="busqueda" placeholder="Buscar servicios...">
+                <div class="input-group-append">
+                    <button style="width: 140px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="row align-items-center">
         <div class="col-6 mx-auto col-md-6 order-md-2">
             <img class="img-fluid mb-3 mb-md-0" src="/img/favicon.png" alt="" width="1024" height="860">

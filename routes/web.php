@@ -161,6 +161,10 @@ Route::prefix('/servicios')->group(function() {
         'as' => 'web.servicios.mis',
         'uses' => 'ServiciosController@mis'
     ]);
+    Route::get('/busca', [
+        'as' => 'web.servicios.busca',
+        'uses' => 'ServiciosController@buscar'
+    ]);
     Route::get('/{id}', [
         'as' => 'web.servicios.obtenerServicios',
         'uses' => 'ServiciosController@obtenerServicios'

@@ -1,16 +1,20 @@
 @extends('layouts.web')
 
 @section('titulo')
-    Categorias de servicios
+    Resultados para {{ $terminoDeBusqueda }}
+@endsection
+
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('web.servicios.obtenerGrupos') }}">Servicios</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Búsqueda</li>
 @endsection
 
 @section('content')
-    @include('partials.alerta')
     <form action="{{ route('web.servicios.busca') }}" method="get">
         <div class="form-group">
             <label class="sr-only" for="busqueda">Servicio</label>
             <div class="input-group mb-2">
-                <input type="text" class="form-control" name="q" id="busqueda" placeholder="Buscar...">
+                <input type="text" class="form-control" name="q" id="busqueda" placeholder="Buscar..." value="{{ $terminoDeBusqueda }}">
                 <div class="input-group-append">
                     <button style="width: 140px;" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
@@ -22,8 +26,8 @@
             <b>Agregar mi servicio</b>
             <i class="fas fa-plus float-right"></i>
         </a>
-        @foreach($grupos as $grupo)
-            <a href="{{ route('web.servicios.obtenerServicios', ['id' => $grupo->id]) }}" class="list-group-item list-group-item-action">{{ $grupo->nombre }}</a>
+        @foreach($servicios as $servicio)
+            @include('partials.servicioItem')
         @endforeach
     </div>
 @endsection
