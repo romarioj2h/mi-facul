@@ -16,12 +16,21 @@ class ServiciosController extends Controller
         ]);
     }
 
-    public function obtenerServicios($id)
+    public function obtenerServicios(Request $request, $id)
     {
         $grupo = ServiciosGrupos::findOrFail($id);
+        $query = Servicios::where('serviciosGruposId', '=', $id)->where('estado', '=', Servicios::ESTADO_APROBADO);
+        if ($request->has('order')) {
+            $order = $request->get('order');
+            if ($order == 'mejorEvaluado') {
+                $query->orderBy('promedioEvaluaciones', 'desc');
+            } elseif ($order == 'peorEvaluado') {
+                $query->orderBy('promedioEvaluaciones', 'asc');
+            }
+        }
         return view('servicios.obtenerServicios', [
             'grupo' => $grupo,
-            'servicios' => $grupo->servicios->where('estado', '=', Servicios::ESTADO_APROBADO)
+            'servicios' => $query->get()
         ]);
     }
 
@@ -35,15 +44,22 @@ class ServiciosController extends Controller
     public function buscar(Request $request)
     {
         $terminoDeBusqueda = $request->get('q') ?? '';
-        $servicios = Servicios::where('estado', '=', Servicios::ESTADO_APROBADO)
+        $query = Servicios::where('estado', '=', Servicios::ESTADO_APROBADO)
             ->where(function ($query) use ($terminoDeBusqueda) {
                 $query->where('nombre', 'like', '%'.$terminoDeBusqueda.'%')
                     ->orWhere('descripcion', 'like', '%'.$terminoDeBusqueda.'%');
-            })
-            ->get();
+            });
+        if ($request->has('order')) {
+            $order = $request->get('order');
+            if ($order == 'mejorEvaluado') {
+                $query->orderBy('promedioEvaluaciones', 'desc');
+            } elseif ($order == 'peorEvaluado') {
+                $query->orderBy('promedioEvaluaciones', 'asc');
+            }
+        }
 
         return view('servicios.busca', [
-            'servicios' => $servicios,
+            'servicios' => $query->get(),
             'terminoDeBusqueda' => $terminoDeBusqueda
         ]);
     }

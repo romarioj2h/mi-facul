@@ -15,6 +15,18 @@
             <b>Agregar mi servicio</b>
             <i class="fas fa-plus float-right"></i>
         </a>
+        <div class="list-group-item list-group-item-action">
+            <div class="float-right">
+                <a href="{{ route('web.servicios.obtenerServicios', ['id' => $grupo->id, 'order' => 'mejorEvaluado']) }}">
+                    Mejor evaluado
+                    <i class="fas fa-sort-numeric-up"></i>
+                </a>
+                <a href="{{ route('web.servicios.obtenerServicios', ['id' => $grupo->id, 'order' => 'peorEvaluado']) }}">
+                    Peor evaluado
+                    <i class="fas fa-sort-numeric-down"></i>
+                </a>
+            </div>
+        </div>
         @foreach($servicios as $servicio)
             @include('partials.servicioItem')
         @endforeach
