@@ -31,7 +31,7 @@
     <label for="localidad">Localidad</label>
     <select class="form-control" id="localidad" name="localidad">
         <option @if(old('localidad', isset($servicio->localidad) ? $servicio->localidad : null) == 'Rosario') selected @endif value="Rosario">Rosario</option>
-        <option @if(old('localidad', isset($servicio->localidad) ? $servicio->localidad : null) == 'Buenos Aires') selected @endif value="Buenos Aires">Buenos Aires</option>
+{{--        <option @if(old('localidad', isset($servicio->localidad) ? $servicio->localidad : null) == 'Buenos Aires') selected @endif value="Buenos Aires">Buenos Aires</option>--}}
     </select>
 </div>
 <div class="form-group">
