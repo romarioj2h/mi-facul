@@ -112,11 +112,6 @@
     @endif
     <div class="container">
         <h3 class="text-center">@yield('titulo')</h3>
-        <div class="text-center">
-            <a target="_blank" href="https://api.whatsapp.com/send?phone=543412288929">
-                <img src="/img/banner.jpg" class="img-fluid">
-            </a>
-        </div>
         <h4 id="resultado" class="text-center text-success"></h4>
         <div class="row justify-content-md-center">
             <div class="col-md-9">
