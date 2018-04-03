@@ -19,13 +19,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="/js/web.js"></script>
-    
+
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-3454733032130094",
-            enable_page_level_ads: true
-        });
+        (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113894471-1"></script>
@@ -115,6 +112,12 @@
         <h4 id="resultado" class="text-center text-success"></h4>
         <div class="row justify-content-md-center">
             <div class="col-md-9">
+                <!-- mifacul1 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3454733032130094"
+                     data-ad-slot="4901276736"
+                     data-ad-format="auto"></ins>
                 @yield('content')
             </div>
         </div>
