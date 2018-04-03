@@ -49,6 +49,10 @@
             -ms-user-select: none;
             user-select: none;
         }
+        .footer {
+            padding: 0.5rem 2.5rem;
+            border-top: .05rem solid #e5e5e5;
+        }
     </style>
 </head>
 <body>
@@ -122,5 +126,11 @@
         <br>
         <br>
     </div>
+    <footer class="footer">
+        <p>
+            <a href="{{ route('web.paginas.terminosServicio') }}">Terminos de servicio</a>
+            <a class="float-right" href="#">Back to top</a>
+        </p>
+    </footer>
 </body>
 </html>

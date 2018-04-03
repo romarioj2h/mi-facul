@@ -24,6 +24,7 @@ Route::get('/gruposPreguntas', [
 ]);
 
 Route::view('/contacto', 'contacto.index')->name('web.contacto');
+Route::view('/paginas/terminos-servicio', 'paginas.terminosCondiciones')->name('web.paginas.terminosServicio');
 
 Route::post('/contacto/guardar', [
     'as' => 'web.contacto.guardar',
