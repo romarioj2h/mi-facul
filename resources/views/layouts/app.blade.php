@@ -51,7 +51,7 @@
                     <ul class="nav navbar-nav">
                         @if(!Auth::guest())
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grupos <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grupos Preguntas <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ route('admin.grupos.index') }}">Listado</a></li>
                                 </ul>
