@@ -34,7 +34,7 @@
                     </a>
                 @endforeach
                 @if(!empty($servicio->facebook))
-                    <a href="{{ $servicio->facebook }}" class="card-link">
+                    <a href="{{ $servicio->facebook }}" class="card-link" target="_blank">
                         <i class="fab fa-facebook"></i> Facebook
                     </a>
                 @endif
