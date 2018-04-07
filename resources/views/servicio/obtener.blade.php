@@ -16,7 +16,7 @@
     <div class="card col-md-12">
         <div class="card-body">
             <h5 class="card-title">
-                {{ $servicio->nombre }}
+                {{ $servicio->nombre }} - <small>{{ $servicio->usuarios->nombre }}</small>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ $servicio->grupos->nombre }}</h6>
             <p class="card-text">
