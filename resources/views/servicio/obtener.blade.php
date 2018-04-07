@@ -98,14 +98,14 @@
         <div class="card">
             @foreach($servicio->comentarios as $comentario)
                 <div style="padding: 1rem;" class="card-body row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <h5 class="card-title">
                             <img style="width: 60px;" src="{{ $comentario->usuario->foto }}" class="img-thumbnail">
                             {{ $comentario->usuario->nombre }}
                         </h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ date('d/m/Y', strtotime($comentario->creadoEn)) }}</h6>
                     </div>
-                    <p class="card-text col-md-9">
+                    <p class="card-text col-md-8">
                         {{ $comentario->comentario }}
                     </p>
                 </div>
