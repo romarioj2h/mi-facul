@@ -54,6 +54,7 @@
             border-top: .05rem solid #e5e5e5;
         }
     </style>
+    @yield('header')
 </head>
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">

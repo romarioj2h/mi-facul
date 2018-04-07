@@ -1,5 +1,13 @@
 @extends('layouts.web')
 
+@section('header')
+    <meta property="og:url" content="https://mifacul.xyz/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MiFacul - Servicios brasileros y argentinos" />
+    <meta property="og:description" content="Encuentre los servicios de comida, transporte, clases, belleza. Site creado por Brasileros para Argentinos y Brasileros" />
+    <meta property="og:image" content="https://mifacul.xyz/img/favicon.png" />
+@endsection
+
 @section('titulo')
     Sitio MiFacul
 @endsection
