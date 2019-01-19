@@ -57,7 +57,7 @@
     @yield('header')
 </head>
 <body>
-    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
         <a class="navbar-brand" href="{{ route('web.index') }}">
             <img src="/img/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="MiFacul">
             MiFacul
